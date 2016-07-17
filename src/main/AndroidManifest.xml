@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kongtech.plutocon.sdk" >
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:label="@string/app_name"
+        android:supportsRtl="true" >
+        <service
+            android:name=".service.PlutoconServive"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+    </application>
+
+</manifest>
