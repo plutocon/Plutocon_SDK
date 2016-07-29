@@ -1,4 +1,36 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'kongtech'
+    groupId = 'com.kongtech.plutocon.sdk'
+    artifactId = 'plutocon_sdk'
+    publishVersion = '1.0.0'
+    desc = 'Plutocon SDK'
+    website = 'https://github.com/plutocon/Plutocon_SDK'
+    issueTracker = "${website}/issues"
+    repository = "${website}.git"
+}
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.novoda:bintray-release:0.3.4'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+repositories {
+    jcenter()
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
 
 android {
     compileSdkVersion 23

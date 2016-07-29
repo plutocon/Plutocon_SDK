@@ -230,8 +230,8 @@ public class Plutocon implements Parcelable, Comparable<Plutocon> {
         if (serviceData != null && manufacturerSpecificData != null
                 && serviceData.length == 11) {
             if (serviceData[0] != 1) return null;
-            //return new Plutocon(device, rssi, manufacturerSpecificData, serviceData[11] == 1);
-            return new Plutocon(scanRecord.getDeviceName(), device.getAddress() , rssi, (int)serviceData[9], manufacturerSpecificData, true);
+            int battery = (((int) serviceData[8]) << 8) | ((int) serviceData[9] & 0xFF);
+            return new Plutocon(scanRecord.getDeviceName(), device.getAddress() , rssi, battery, manufacturerSpecificData, true);
         }
         return null;
     }
