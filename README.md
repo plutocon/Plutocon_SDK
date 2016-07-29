@@ -11,7 +11,7 @@ repositories {
 dependencies {
 	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.0.0'
 }
-
+```
 ##Permissions
 ### Basic permissions
 The following permissions are included in the sdk
