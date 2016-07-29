@@ -1,4 +1,4 @@
-# plutocon#
+#Plutocon SDK#
 
 ##Installation
 ### Gradle via jCenter
