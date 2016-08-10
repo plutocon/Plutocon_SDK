@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.0.0'
+	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.0.1'
 }
 ```
 ##Permissions
