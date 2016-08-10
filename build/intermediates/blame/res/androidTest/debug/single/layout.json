@@ -16,16 +16,16 @@
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_part_time.xml"
     },
     {
+        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_checkbox.xml",
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_lines.xml",
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_lines.xml"
-    },
-    {
-        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_mode_close_item_material.xml",
-        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_search_view.xml",
@@ -104,12 +104,12 @@
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_toolbar.xml"
     },
     {
-        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_alert_dialog_material.xml",
-        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_material.xml"
-    },
-    {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
@@ -140,11 +140,11 @@
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_select_dialog_material.xml"
     },
     {
-        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_bar_up_container.xml",
-        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_up_container.xml"
-    },
-    {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_activity_chooser_view.xml",
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_up_container.xml"
     }
 ]
