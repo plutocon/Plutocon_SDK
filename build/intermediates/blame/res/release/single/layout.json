@@ -104,12 +104,12 @@
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
-        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_big_media.xml"
-    },
-    {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\release\\layout\\select_dialog_item_material.xml",
         "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "C:\\Users\\hojin\\Documents\\GitHub\\Plutocon_SDK\\build\\intermediates\\res\\merged\\release\\layout\\abc_alert_dialog_material.xml",

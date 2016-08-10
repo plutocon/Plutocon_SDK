@@ -150,7 +150,7 @@ public class Plutocon implements Parcelable, Comparable<Plutocon> {
             double longitudeHigh = Double.parseDouble(uuid.toString().substring(21, 23)
                     + uuid.toString().substring(24, 26));
             double longitudeLow = Double.parseDouble(uuid.toString().substring(26, 32));
-            return (longitudeLow * 1000000 + longitudeLow) / 1000000;
+            return (longitudeHigh * 1000000 + longitudeLow) / 1000000;
         } catch (Exception e) {
             return 0;
         }
