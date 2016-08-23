@@ -5,7 +5,7 @@ publish {
     userOrg = 'kongtech'
     groupId = 'com.kongtech.plutocon.sdk'
     artifactId = 'plutocon_sdk'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.3'
     desc = 'Plutocon SDK'
     website = 'https://github.com/plutocon/Plutocon_SDK'
     issueTracker = "${website}/issues"
@@ -39,8 +39,8 @@ android {
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
     }
     buildTypes {
         release {

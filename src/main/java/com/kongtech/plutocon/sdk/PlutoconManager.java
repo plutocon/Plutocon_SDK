@@ -31,8 +31,6 @@ public class PlutoconManager {
     private PlutoconServiceConnection serviceConnection;
     private OnReadyServiceListener onReadyService;
 
-
-
     private OnMonitoringPlutoconListener onMonitoringPlutoconListener;
     private MonitoringResult monitoringResult;
     private Context context;
@@ -85,10 +83,15 @@ public class PlutoconManager {
         try {
             if(messengerService != null)
                 this.messengerService.send(scanStopMsg);
+            monitoringResult.clear();
         } catch (RemoteException e) {
             Plog.e("Error Stop Monitoring: " + e.toString());
             e.printStackTrace();
         }
+    }
+
+    public MonitoringResult getMonitoringResult() {
+        return monitoringResult;
     }
 
     public void close(){
