@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/plutocon_sdk.iml" filepath="$PROJECT_DIR$/plutocon_sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Plutocon_SDK.iml" filepath="$PROJECT_DIR$/Plutocon_SDK.iml" />
     </modules>
   </component>
 </project>

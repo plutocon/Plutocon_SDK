@@ -21,11 +21,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Helper class for Bluetooth LE utils.
- *
- * @hide
- */
 public class BluetoothLeUtils {
     /**
      * Returns a string composed from a {@link SparseArray}.

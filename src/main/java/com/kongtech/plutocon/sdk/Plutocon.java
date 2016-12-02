@@ -226,6 +226,9 @@ public class Plutocon implements Parcelable, Comparable<Plutocon> {
 
         byte[] serviceData = scanRecord.getServiceData(PlutoconUuid.SERVICE_DATA_UUID);
         byte[] manufacturerSpecificData = scanRecord.getManufacturerSpecificData(76);
+        if(manufacturerSpecificData == null) {
+            manufacturerSpecificData = scanRecord.getManufacturerSpecificData(89);
+        }
 
         if (serviceData != null && manufacturerSpecificData != null
                 && serviceData.length == 11) {
@@ -235,6 +238,4 @@ public class Plutocon implements Parcelable, Comparable<Plutocon> {
         }
         return null;
     }
-
-    ;
 }

@@ -150,7 +150,6 @@ public final class ScanRecord {
      * order.
      *
      * @param scanRecord The scan record of Bluetooth LE advertisement and/or scan response.
-     * @hide
      */
     public static ScanRecord parseFromBytes(byte[] scanRecord) {
         if (scanRecord == null) {
