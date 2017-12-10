@@ -5,7 +5,7 @@ publish {
     userOrg = 'kongtech'
     groupId = 'com.kongtech.plutocon.sdk'
     artifactId = 'plutocon_sdk'
-    publishVersion = '1.1.0'
+    publishVersion = '1.2.0'
     desc = 'Plutocon SDK'
     website = 'https://github.com/plutocon/Plutocon_SDK'
     issueTracker = "${website}/issues"
@@ -28,19 +28,15 @@ repositories {
     jcenter()
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 5
-        versionName "1.1.0"
+        versionCode 6
+        versionName "1.2.0"
     }
     buildTypes {
         release {

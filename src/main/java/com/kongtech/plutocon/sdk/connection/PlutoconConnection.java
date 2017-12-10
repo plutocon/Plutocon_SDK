@@ -212,7 +212,8 @@ public class PlutoconConnection {
             double latitudeHigh = Double.parseDouble(uuid.toString().substring(9, 13));
             double latitudeLow = Double.parseDouble(uuid.toString().substring(14, 18)
                     + uuid.toString().substring(19, 21));
-            return (latitudeHigh * 1000000 + latitudeLow) / 1000000;
+            boolean iLatitude = latitudeHigh / 1000f >= 1;
+            return (iLatitude ? -1 : 1) * ((latitudeHigh - (iLatitude ? 1000 : 0)) * 1000000 + latitudeLow) / 1000000;
         } catch (Exception e) {
             return 0;
         }
@@ -225,7 +226,8 @@ public class PlutoconConnection {
             double longitudeHigh = Double.parseDouble(uuid.toString().substring(21, 23)
                     + uuid.toString().substring(24, 26));
             double longitudeLow = Double.parseDouble(uuid.toString().substring(26, 32));
-            return (longitudeHigh * 1000000 + longitudeLow) / 1000000;
+            boolean iLongitude = longitudeHigh / 1000f >= 1;
+            return (iLongitude ? -1 : 1) * ((longitudeHigh - (iLongitude ? 1000 : 0)) * 1000000 + longitudeLow) / 1000000;
         } catch (Exception e) {
             return 0;
         }

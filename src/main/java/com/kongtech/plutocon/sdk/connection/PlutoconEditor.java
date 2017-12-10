@@ -20,10 +20,16 @@ public class PlutoconEditor extends PlutoconOperator {
     private String getUuidFromPlace(String baseUuid, double latitude, double longitude) {
         String uuid = baseUuid;
         Log.d("PlutoconEditor", latitude + ", " + longitude);
-        String slatitude = String.format("%04d%06d", (int) latitude, (int) ((latitude - (int) latitude) * 1000000));
-        String slongitude = String.format("%04d%06d", (int) longitude, (int) ((longitude - (int) longitude) * 1000000));
+
+        int iLatitude = latitude < 0 ? -1 : 1;
+        int iLongitude = longitude < 0 ? -1 : 1;
+
+        String slatitude = String.format("%04d%06d", latitude >= 0 ? (int) latitude : 1000 + (int) latitude * -1, (int) ((latitude - (int) latitude) * 1000000 * iLatitude));
+        String slongitude = String.format("%04d%06d", longitude >= 0 ? (int) longitude : 1000 + (int) longitude * -1, (int) ((longitude - (int) longitude) * 1000000 * iLongitude));
+
         Log.d("PlutoconEditor", "UUID: " + uuid);
         Log.d("PlutoconEditor", slatitude + ", " + slongitude);
+
         uuid = uuid.substring(0, 9) + slatitude.substring(0, 4) + uuid.substring(13, uuid.length());
         uuid = uuid.substring(0, 14) + slatitude.substring(4, 8) + uuid.substring(18, uuid.length());
         uuid = uuid.substring(0, 19) + slatitude.substring(8, 10) + uuid.substring(21, uuid.length());
