@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.2.0'
+	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.3.1'
 }
 ```
 ##Permissions
@@ -26,7 +26,7 @@ The following permissions are included in the sdk
 ## Tutorials
 ### Quick start for monitoring plutocons
 
-````java
+```java
 private PlutoconManager plutoconManager;
 
 // Initialization
@@ -62,8 +62,8 @@ plutoconManager.stopMonitoring();
 plutoconManager.close();
 ```
 
-### Quick start for connecting sensor
-````java
+### Quick start for connecting plutocon
+```java
 // Initialization
 PlutoconConnection plutoconConnection = new PlutoconConnection(context);
 
