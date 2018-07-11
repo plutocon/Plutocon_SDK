@@ -1,7 +1,6 @@
 package com.kongtech.plutocon.sdk.repackaged;
 
 import android.os.ParcelUuid;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -33,7 +32,6 @@ public final class ScanRecord {
     // Flags of the advertising data.
     private final int mAdvertiseFlags;
 
-    @Nullable
     private final List<ParcelUuid> mServiceUuids;
 
     private final SparseArray<byte[]> mManufacturerSpecificData;
@@ -77,7 +75,6 @@ public final class ScanRecord {
      * Returns the manufacturer specific data associated with the manufacturer id. Returns
      * {@code null} if the {@code manufacturerId} is not found.
      */
-    @Nullable
     public byte[] getManufacturerSpecificData(int manufacturerId) {
         return mManufacturerSpecificData.get(manufacturerId);
     }
@@ -93,7 +90,6 @@ public final class ScanRecord {
      * Returns the service data byte array associated with the {@code serviceUuid}. Returns
      * {@code null} if the {@code serviceDataUuid} is not found.
      */
-    @Nullable
     public byte[] getServiceData(ParcelUuid serviceDataUuid) {
         if (serviceDataUuid == null) {
             return null;
@@ -115,7 +111,6 @@ public final class ScanRecord {
     /**
      * Returns the local name of the BLE device. The is a UTF-8 encoded string.
      */
-    @Nullable
     public String getDeviceName() {
         return mDeviceName;
     }

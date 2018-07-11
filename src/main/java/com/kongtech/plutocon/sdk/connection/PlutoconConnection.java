@@ -239,7 +239,8 @@ public class PlutoconConnection {
     }
 
     public void disconnect() {
-        this.notifyDisconnected();
+        if(isConnected)
+            bluetoothGatt.disconnect();
     }
 
     public interface OnConnectionRemoteRssiCallback {
