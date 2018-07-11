@@ -1,6 +1,6 @@
-#Plutocon SDK#
+# Plutocon SDK
 
-##Installation
+## Installation
 ### Gradle via jCenter
 Declare in your Gradle's `build.gradle` dependency to this library.
 ```gradle
@@ -12,7 +12,7 @@ dependencies {
 	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.3.1'
 }
 ```
-##Permissions
+## Permissions
 ### Basic permissions
 The following permissions are included in the sdk
   - 'android.permission.BLUETOOTH'
