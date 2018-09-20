@@ -30,7 +30,7 @@ The following permissions are included in the sdk
 private PlutoconManager plutoconManager;
 
 // Initialization
-plutoconManager = new PlutoconManager(context);
+plutoconManager = new PlutoconManager(context, macAddress);
 plutoconManager.connectService(new PlutoconManager.OnReadyServiceListener() {
 	@Override
 	public void onReady() {
