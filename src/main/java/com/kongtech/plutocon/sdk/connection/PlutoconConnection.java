@@ -82,7 +82,7 @@ public class PlutoconConnection {
                     PlutoconConnection.this.readDefaultProperty(new PlutoconOperator.OnOperationCompleteCallback() {
                         @Override
                         public void onOperationComplete(BluetoothGattCharacteristic characteristic, boolean isLast) {
-                            if(PlutoconConnection.this.onConnectionStateChangeCallback != null && isLast){
+                            if (PlutoconConnection.this.onConnectionStateChangeCallback != null && isLast) {
                                 PlutoconConnection.this.onConnectionStateChangeCallback.onConnectionStateConnected();
                             }
                         }
@@ -113,7 +113,7 @@ public class PlutoconConnection {
             @Override
             public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
                 super.onReadRemoteRssi(gatt, rssi, status);
-                if(onConnectionRemoteRssiCallback != null){
+                if (onConnectionRemoteRssiCallback != null) {
                     onConnectionRemoteRssiCallback.onConnectionRemoteRssiCallback(rssi);
                 }
             }
@@ -166,15 +166,30 @@ public class PlutoconConnection {
 
     public int getBroadcastingPower() {
         byte[] data = characteristics.get(PlutoconUuid.TX_LEVEL_CHARACTERISTIC).getValue();
-        return (short)(((int) data[0]) << 8) | ((int) data[1] & 0xFF);
+        return (short) (((int) data[0]) << 8) | ((int) data[1] & 0xFF);
     }
 
     public int getBatteryVoltage() {
         byte[] data = characteristics.get(PlutoconUuid.BATTERY_CHARACTERISTIC).getValue();
-        return (short)(((int) data[0]) << 8) | ((int) data[1] & 0xFF);
+        return (short) (((int) data[0]) << 8) | ((int) data[1] & 0xFF);
     }
+
     public String getSoftwareVersion() {
         return new String(characteristics.get(PlutoconUuid.SOFTWARE_VERSION_CHARACTERISTIC).getValue());
+    }
+
+    /**
+     * Get software version detail
+     * @return 0: Major, 1: Minor, 2: Patch
+     */
+    public int[] getSoftwareVersionDetail() {
+        String version = getSoftwareVersion();
+        String[] versionDetail = version.split(".");
+        int[] result = new int[3];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = Integer.parseInt(versionDetail[i + 1]);
+        }
+        return result;
     }
 
     public String getHardwareVersion() {
@@ -185,7 +200,7 @@ public class PlutoconConnection {
         return new String(characteristics.get(PlutoconUuid.MODEL_NUMBER_CHARACTERISTIC).getValue());
     }
 
-    public String getManufactureName(){
+    public String getManufactureName() {
         return new String(characteristics.get(PlutoconUuid.MANUFACTURE_NAME_CHARACTERISTIC).getValue());
     }
 
@@ -197,7 +212,7 @@ public class PlutoconConnection {
         return this.reader = new PlutoconReader(bluetoothGatt);
     }
 
-    public ParcelUuid getUuid(){
+    public ParcelUuid getUuid() {
         byte[] data = characteristics.get(PlutoconUuid.UUID_CHARACTERISTIC).getValue();
         ByteBuffer bb = ByteBuffer.wrap(data);
         long high = bb.getLong();
@@ -205,7 +220,7 @@ public class PlutoconConnection {
         return new ParcelUuid(new UUID(high, low));
     }
 
-    public double getLatitude(){
+    public double getLatitude() {
         ParcelUuid uuid = getUuid();
         if (uuid == null) return 0;
         try {
@@ -219,7 +234,7 @@ public class PlutoconConnection {
         }
     }
 
-    public double getLongitude(){
+    public double getLongitude() {
         ParcelUuid uuid = getUuid();
         if (uuid == null) return 0;
         try {
@@ -239,7 +254,7 @@ public class PlutoconConnection {
     }
 
     public void disconnect() {
-        if(isConnected)
+        if (isConnected)
             bluetoothGatt.disconnect();
     }
 
