@@ -124,7 +124,7 @@ public class PlutoconEditor extends PlutoconOperator {
      *              <li>{@link PlutoconUuid#DEVICE_NAME_CHARACTERISTIC}
      *              </ul>
      * @param value <ul>
-     *              <li>{@link PlutoconUuid#ADV_INTERVAL_CHARACTERISTIC} : value.length <= 16
+     *              <li>{@link PlutoconUuid#ADV_INTERVAL_CHARACTERISTIC} : {@literal (value.length <= 16)}
      *              </ul>
      * @return {@link PlutoconEditor}
      * @throws InvalidParameterException
