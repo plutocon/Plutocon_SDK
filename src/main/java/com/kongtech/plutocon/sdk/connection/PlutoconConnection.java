@@ -123,7 +123,10 @@ public class PlutoconConnection {
 
     private void readDefaultProperty(PlutoconOperator.OnOperationCompleteCallback onOperationCompleteCallback) {
         PlutoconReader reader = this.reader();
-        reader.getProperty(PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC)
+        reader.getProperty(PlutoconUuid.DEVICE_NAME_CHARACTERISTIC)
+                .getProperty(PlutoconUuid.MAJOR_CHARACTERISTIC)
+                .getProperty(PlutoconUuid.MINOR_CHARACTERISTIC)
+                .getProperty(PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC)
                 .getProperty(PlutoconUuid.TX_LEVEL_CHARACTERISTIC)
                 .getProperty(PlutoconUuid.BATTERY_CHARACTERISTIC)
                 .getProperty(PlutoconUuid.SOFTWARE_VERSION_CHARACTERISTIC)
@@ -159,19 +162,33 @@ public class PlutoconConnection {
         if (bluetoothGatt != null) bluetoothGatt.readRemoteRssi();
     }
 
+    public String getName() {
+        return new String(characteristics.get(PlutoconUuid.DEVICE_NAME_CHARACTERISTIC).getValue());
+    }
+
+    private short getShortValue(ParcelUuid uuid) {
+        byte[] data = characteristics.get(uuid).getValue();
+        return (short) ((((int) data[0]) << 8) | ((int) data[1] & 0xFF));
+    }
+
+    public int getMajor() {
+        return getShortValue(PlutoconUuid.MAJOR_CHARACTERISTIC) & 0xffff;
+    }
+
+    public int getMinor() {
+        return getShortValue(PlutoconUuid.MINOR_CHARACTERISTIC) & 0xffff;
+    }
+
     public int getAdvertisingInterval() {
-        byte[] data = characteristics.get(PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC).getValue();
-        return (((int) data[0]) << 8) | ((int) data[1] & 0xFF);
+        return getShortValue(PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC);
     }
 
     public int getBroadcastingPower() {
-        byte[] data = characteristics.get(PlutoconUuid.TX_LEVEL_CHARACTERISTIC).getValue();
-        return (short) (((int) data[0]) << 8) | ((int) data[1] & 0xFF);
+        return getShortValue(PlutoconUuid.TX_LEVEL_CHARACTERISTIC);
     }
 
     public int getBatteryVoltage() {
-        byte[] data = characteristics.get(PlutoconUuid.BATTERY_CHARACTERISTIC).getValue();
-        return (short) (((int) data[0]) << 8) | ((int) data[1] & 0xFF);
+        return getShortValue(PlutoconUuid.BATTERY_CHARACTERISTIC);
     }
 
     public String getSoftwareVersion() {
@@ -180,14 +197,15 @@ public class PlutoconConnection {
 
     /**
      * Get software version detail
+     *
      * @return 0: Major, 1: Minor, 2: Patch
      */
     public int[] getSoftwareVersionDetail() {
         String version = getSoftwareVersion();
-        String[] versionDetail = version.split(".");
+        String[] versionDetail = version.substring(1).split("\\.");
         int[] result = new int[3];
         for (int i = 0; i < result.length; i++) {
-            result[i] = Integer.parseInt(versionDetail[i + 1]);
+            result[i] = Integer.parseInt(versionDetail[i]);
         }
         return result;
     }
@@ -205,7 +223,7 @@ public class PlutoconConnection {
     }
 
     public PlutoconEditor editor() {
-        return this.editor = new PlutoconEditor(bluetoothGatt);
+        return this.editor = new PlutoconEditor(bluetoothGatt, getSoftwareVersionDetail());
     }
 
     public PlutoconReader reader() {

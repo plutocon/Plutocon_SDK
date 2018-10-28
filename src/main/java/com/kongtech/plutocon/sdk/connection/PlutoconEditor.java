@@ -6,15 +6,25 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.ParcelUuid;
 import android.util.Log;
 
+import com.kongtech.plutocon.sdk.Plutocon;
 import com.kongtech.plutocon.sdk.util.PlutoconUuid;
 
 import java.nio.ByteBuffer;
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
-public class PlutoconEditor extends PlutoconOperator {
+import static com.kongtech.plutocon.sdk.util.PlutoconUuid.MAJOR_CHARACTERISTIC;
 
-    public PlutoconEditor(BluetoothGatt sensorGatt) {
+public class PlutoconEditor extends PlutoconOperator {
+    private static final List<Integer> TX_LEVELS = Arrays.asList(-40, -30, -20, -16, -12, -8, -4, 0, 4);
+    private int[] versionInfo;
+
+    public PlutoconEditor(BluetoothGatt sensorGatt, int[] versionInfo) {
         super(sensorGatt);
+        this.versionInfo = versionInfo;
     }
 
     private String getUuidFromPlace(String baseUuid, double latitude, double longitude) {
@@ -42,7 +52,7 @@ public class PlutoconEditor extends PlutoconOperator {
         return uuid;
     }
 
-    public PlutoconEditor setGeofence(double latitude, double longitude){
+    public PlutoconEditor setGeofence(double latitude, double longitude) {
         BluetoothGattCharacteristic characteristic = this.getCharacteristics(PlutoconUuid.UUID_CHARACTERISTIC);
         if (characteristic != null && this.characteristicValidate(characteristic)) {
             byte[] data = characteristic.getValue();
@@ -74,10 +84,29 @@ public class PlutoconEditor extends PlutoconOperator {
         return this;
     }
 
-    public PlutoconEditor setProperty(ParcelUuid uuid, int value){
+    /**
+     * Set property with value
+     *
+     * @param uuid  <ul>
+     *              <li>{@link PlutoconUuid#MAJOR_CHARACTERISTIC}
+     *              <li>{@link PlutoconUuid#MINOR_CHARACTERISTIC}
+     *              <li>{@link PlutoconUuid#TX_LEVEL_CHARACTERISTIC}
+     *              <li>{@link PlutoconUuid#ADV_INTERVAL_CHARACTERISTIC}
+     *              </ul>
+     * @param value <ul>
+     *              <li>{@link PlutoconUuid#MAJOR_CHARACTERISTIC} : 0 ~ 65535
+     *              <li>{@link PlutoconUuid#MINOR_CHARACTERISTIC} : 0 ~ 65535
+     *              <li>{@link PlutoconUuid#TX_LEVEL_CHARACTERISTIC} : -40, -30, -20, -16, -12, -8, -4, 0, 4
+     *              <li>{@link PlutoconUuid#ADV_INTERVAL_CHARACTERISTIC} : 100 ~ 5000
+     *              </ul>
+     * @return {@link PlutoconEditor}
+     * @throws InvalidParameterException
+     */
+    public PlutoconEditor setProperty(ParcelUuid uuid, int value) {
         BluetoothGattCharacteristic characteristic = this.getCharacteristics(uuid);
 
         if (characteristic != null && this.characteristicValidate(characteristic)) {
+            validate(uuid, value);
             byte[] d = new byte[2];
             short v = (short) value;
             d[0] = (byte) (v >> 8);
@@ -88,13 +117,61 @@ public class PlutoconEditor extends PlutoconOperator {
         return this;
     }
 
-    public PlutoconEditor setProperty(ParcelUuid uuid, String value){
-        BluetoothGattCharacteristic characteristic =  this.getCharacteristics(uuid);
+    /**
+     * Set property with value
+     *
+     * @param uuid  <ul>
+     *              <li>{@link PlutoconUuid#DEVICE_NAME_CHARACTERISTIC}
+     *              </ul>
+     * @param value <ul>
+     *              <li>{@link PlutoconUuid#ADV_INTERVAL_CHARACTERISTIC} : value.length <= 16
+     *              </ul>
+     * @return {@link PlutoconEditor}
+     * @throws InvalidParameterException
+     */
+    public PlutoconEditor setProperty(ParcelUuid uuid, String value) {
+        BluetoothGattCharacteristic characteristic = this.getCharacteristics(uuid);
+        if (characteristic != null && this.characteristicValidate(characteristic)) {
+            validate(uuid, value);
+            characteristic.setValue(value);
+            this.addCharacteristic(characteristic);
+        }
+        return this;
+    }
+
+    /**
+     * Set property with value(*Don't use this method)
+     *
+     * @param uuid  Plutocon Uuid
+     * @param value Raw value
+     * @return {@link PlutoconEditor}
+     */
+    public PlutoconEditor setProperty(ParcelUuid uuid, byte[] value) {
+        BluetoothGattCharacteristic characteristic = this.getCharacteristics(uuid);
         if (characteristic != null && this.characteristicValidate(characteristic)) {
             characteristic.setValue(value);
             this.addCharacteristic(characteristic);
         }
         return this;
+    }
+
+    private void validate(ParcelUuid uuid, int value) {
+        if (PlutoconUuid.TX_LEVEL_CHARACTERISTIC.equals(uuid)) {
+            if (versionInfo[0] == 1 && versionInfo[1] < 3)
+                throw new InvalidParameterException("Tx level can't change this version");
+        }
+
+        if (!((PlutoconUuid.MAJOR_CHARACTERISTIC.equals(uuid) && value >= 0 && value <= 65535)
+                || (PlutoconUuid.MINOR_CHARACTERISTIC.equals(uuid) && value >= 0 && value <= 65535)
+                || (PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC.equals(uuid) && value >= 100 && value <= 50000)
+                || (PlutoconUuid.TX_LEVEL_CHARACTERISTIC.equals(uuid) && TX_LEVELS.indexOf(value) >= 0))) {
+            throw new InvalidParameterException();
+        }
+    }
+
+    private void validate(ParcelUuid uuid, String value) {
+        if (!(PlutoconUuid.DEVICE_NAME_CHARACTERISTIC.equals(uuid) && value.length() <= 16))
+            throw new InvalidParameterException();
     }
 
     @Override
