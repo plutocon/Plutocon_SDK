@@ -1,4 +1,4 @@
-package com.kongtech.plutocon.sdk.service.scanner;
+package com.kongtech.plutocon.sdk.scanner;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -42,6 +42,11 @@ public class OldScanner implements PlutoconScanner {
             this.isScanning = false;
             this.adapter.stopLeScan(this.leScanCallback);
         }
+    }
+
+    @Override
+    public boolean isScanning() {
+        return this.isScanning;
     }
 
     @Override

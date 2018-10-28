@@ -1,4 +1,4 @@
-package com.kongtech.plutocon.sdk.service.scanner;
+package com.kongtech.plutocon.sdk.scanner;
 
 import android.bluetooth.BluetoothDevice;
 
@@ -9,6 +9,7 @@ public interface PlutoconScanner {
     void start();
     void stop();
     void setScanMode(int mode);
+    boolean isScanning();
     interface ScannerCallback {
         void onLeScan(BluetoothDevice device, int rssi, ScanRecord scanRecord);
     }
