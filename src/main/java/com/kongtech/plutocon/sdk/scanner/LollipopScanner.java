@@ -1,4 +1,4 @@
-package com.kongtech.plutocon.sdk.service.scanner;
+package com.kongtech.plutocon.sdk.scanner;
 
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -88,6 +88,11 @@ public class LollipopScanner implements PlutoconScanner {
     @Override
     public void setScanMode(int mode) {
         this.setting.setScanMode(mode);
+    }
+
+    @Override
+    public boolean isScanning() {
+        return this.isScanning;
     }
 
     private ScanRecord wrap(android.bluetooth.le.ScanRecord scanRecord) {
