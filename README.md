@@ -1,5 +1,14 @@
 # Plutocon SDK
 
+## Relases
+### - 1.5.0
+  - Change gradle version
+  - Remove  `Plutocon Service `
+  - Add `Software version detail` 
+  - Add JavaDoc `PlutoconEditor`
+  - Change TxLevel list [-40, -30, -20, -16, -12, -8, -4, 0, 4]
+  - `Prevent change TxLevel` in `Software version A1.1.0`
+
 ## Installation
 ### Gradle via jCenter
 Declare in your Gradle's `build.gradle` dependency to this library.
@@ -9,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.3.1'
+	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.5.0'
 }
 ```
 ## Permissions
@@ -20,7 +29,6 @@ The following permissions are included in the sdk
 
 ### Android 6.0 runtime permissions
   - If running on Android 6.0 or later, Location Services must be turned on.
-  - If running on Android 6.0 or later and your app is targeting SDK < 23 (M), any location permission (`ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION`) must be granted for <b>background</b> beacon detection.
   - If running on Android 6.0 or later and your app is targeting SDK >= 23 (M), any location permission (`ACCESS_COARSE_LOCATION` or `ACCESS_FINE_LOCATION` must be granted.
 
 ## Tutorials
@@ -31,15 +39,8 @@ private PlutoconManager plutoconManager;
 
 // Initialization
 plutoconManager = new PlutoconManager(context, macAddress);
-plutoconManager.connectService(new PlutoconManager.OnReadyServiceListener() {
-	@Override
-	public void onReady() {
-		//do something
-	}
-});
 
-
-// Start monitoring foreground with listener
+// Start monitoring foreground(fastest scan) with listener
 plutoconManager.startMonitoring(PlutoconManager.MONITORING_FOREGROUND, new PlutoconManager.OnMonitoringPlutoconListener() {
 	@Override
 	public void onPlutoconDiscovered(Plutocon plutocon, List<Plutocon> plutocons) {
@@ -47,7 +48,7 @@ plutoconManager.startMonitoring(PlutoconManager.MONITORING_FOREGROUND, new Pluto
 	}
 });
 
-// Start monitoring background
+// Start monitoring background(normal scan)
 plutoconManager.startMonitoring(PlutoconManager.MONITORING_BACKGROUND, new PlutoconManager.OnMonitoringPlutoconListener() {
 	@Override
 	public void onPlutoconDiscovered(Plutocon plutocon, List<Plutocon> plutocons) {
@@ -58,8 +59,6 @@ plutoconManager.startMonitoring(PlutoconManager.MONITORING_BACKGROUND, new Pluto
 // Stop Monitoring
 plutoconManager.stopMonitoring();
 
-// Disconnect from manager service.
-plutoconManager.close();
 ```
 
 ### Quick start for connecting plutocon
@@ -90,6 +89,7 @@ plutoconConnection.getLatitude();
 plutoconConnection.getLongitude();
 
 plutoconConnection.getSoftwareVersion();
+plutoconConnection.getSoftwareVersionDetail();
 plutoconConnection.getHardwareVersion();
 plutoconConnection.getManufactureName();
 plutoconConnection.getModelNumber();
