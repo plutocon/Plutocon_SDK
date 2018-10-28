@@ -15,7 +15,7 @@ publish {
 
 buildscript {
     repositories {
-        google()
+        maven { url 'https://maven.google.com' }
         jcenter()
     }
     dependencies {
@@ -26,15 +26,16 @@ buildscript {
     }
 }
 repositories {
+    maven { url 'https://maven.google.com' }
     jcenter()
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 10
         versionName "1.5.0"
     }
