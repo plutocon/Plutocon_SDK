@@ -1,6 +1,9 @@
 # Plutocon SDK
 
 ## Relases
+### - 1.5.1
+  - Change the maximum length of device name to 14
+
 ### - 1.5.0
   - Change gradle version
   - Remove  `Plutocon Service `
@@ -18,7 +21,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.5.0'
+	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.5.1'
 }
 ```
 ## Permissions
