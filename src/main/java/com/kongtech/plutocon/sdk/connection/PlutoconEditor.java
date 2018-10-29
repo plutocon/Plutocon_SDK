@@ -170,7 +170,7 @@ public class PlutoconEditor extends PlutoconOperator {
     }
 
     private void validate(ParcelUuid uuid, String value) {
-        if (!(PlutoconUuid.DEVICE_NAME_CHARACTERISTIC.equals(uuid) && value.length() <= 16))
+        if (!(PlutoconUuid.DEVICE_NAME_CHARACTERISTIC.equals(uuid) && value.length() <= 14))
             throw new InvalidParameterException();
     }
 
