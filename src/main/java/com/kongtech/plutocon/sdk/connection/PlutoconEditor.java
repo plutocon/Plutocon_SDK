@@ -161,9 +161,15 @@ public class PlutoconEditor extends PlutoconOperator {
                 throw new InvalidParameterException("Tx level can't change this version");
         }
 
-        if (!((PlutoconUuid.MAJOR_CHARACTERISTIC.equals(uuid) && value >= 0 && value <= 65535)
+        if (PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC.equals(uuid)) {
+            if (versionInfo[0] == 1 && versionInfo[1] < 3
+                    && (value < 100 || value > 5000)) {
+                throw new InvalidParameterException();
+            } else if (value < 20 || value > 5000) {
+                throw new InvalidParameterException();
+            }
+        } else if (!((PlutoconUuid.MAJOR_CHARACTERISTIC.equals(uuid) && value >= 0 && value <= 65535)
                 || (PlutoconUuid.MINOR_CHARACTERISTIC.equals(uuid) && value >= 0 && value <= 65535)
-                || (PlutoconUuid.ADV_INTERVAL_CHARACTERISTIC.equals(uuid) && value >= 100 && value <= 50000)
                 || (PlutoconUuid.TX_LEVEL_CHARACTERISTIC.equals(uuid) && TX_LEVELS.indexOf(value) >= 0))) {
             throw new InvalidParameterException();
         }
