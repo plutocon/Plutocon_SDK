@@ -2,7 +2,7 @@
 
 ## Relases
 ### - 1.5.2
-  - Change minimum adv interval to 20(for A1.3.0)
+  - Change minimum adv interval to 20ms(for A1.3.0)
   
 ### - 1.5.1
   - Change the maximum length of device name to 14
