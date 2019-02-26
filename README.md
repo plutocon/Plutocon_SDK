@@ -3,8 +3,7 @@
 ## Relases
 ### - 1.5.3
   - Add PacketFormat Property(for A1.6.0)
-  - You can choose KongTech Format or iBeacon Format
-  ※ iBeacon format is not detected in iOS Plutocon
+  - You can choose KongTech Format or iBeacon Format(iBeacon format is not detected in iOS Plutocon)
   
 ### - 1.5.2
   - Change minimum adv interval to 20ms(for A1.3.0)
