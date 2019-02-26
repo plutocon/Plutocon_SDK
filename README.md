@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.5.1'
+	compile 'com.kongtech.plutocon.sdk:plutocon_sdk:1.5.3'
 }
 ```
 ## Permissions
