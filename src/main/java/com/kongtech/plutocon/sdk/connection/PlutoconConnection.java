@@ -19,6 +19,10 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PlutoconConnection {
+    public enum PacketFormat {
+        KongTech,
+        iBeacon
+    }
 
     private Context context;
 
@@ -134,6 +138,7 @@ public class PlutoconConnection {
                 .getProperty(PlutoconUuid.MODEL_NUMBER_CHARACTERISTIC)
                 .getProperty(PlutoconUuid.MANUFACTURE_NAME_CHARACTERISTIC)
                 .getProperty(PlutoconUuid.UUID_CHARACTERISTIC)
+                .getProperty(PlutoconUuid.PACKET_FORMAT_CHARACTERISTIC)
                 .setOnOperationCompleteCallback(onOperationCompleteCallback);
         reader.commit();
     }
@@ -177,6 +182,21 @@ public class PlutoconConnection {
 
     public int getMinor() {
         return getShortValue(PlutoconUuid.MINOR_CHARACTERISTIC) & 0xffff;
+    }
+
+    public PacketFormat getPacketFormat() {
+        if (characteristics.get(PlutoconUuid.PACKET_FORMAT_CHARACTERISTIC) != null) {
+            int value = getShortValue(PlutoconUuid.PACKET_FORMAT_CHARACTERISTIC) & 0xffff;
+            switch (value) {
+                case 0x4C:
+                    return PacketFormat.iBeacon;
+                case 0x59:
+                    return PacketFormat.KongTech;
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     public int getAdvertisingInterval() {
