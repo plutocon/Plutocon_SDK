@@ -6,17 +6,15 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.os.ParcelUuid;
 import android.util.Log;
 
-import com.kongtech.plutocon.sdk.Plutocon;
 import com.kongtech.plutocon.sdk.util.PlutoconUuid;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.ByteBuffer;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-
-import static com.kongtech.plutocon.sdk.util.PlutoconUuid.MAJOR_CHARACTERISTIC;
 
 public class PlutoconEditor extends PlutoconOperator {
     private static final List<Integer> TX_LEVELS = Arrays.asList(-40, -30, -20, -16, -12, -8, -4, 0, 4);
@@ -80,6 +78,30 @@ public class PlutoconEditor extends PlutoconOperator {
             bb.putLong(uuid.getUuid().getLeastSignificantBits());
             characteristic.setValue(bb.array());
             this.addCharacteristic(characteristic);
+        }
+        return this;
+    }
+
+    /**
+     * @param packetFormat <ul>
+     *                     <li>{@link PlutoconUuid#MAJOR_CHARACTERISTIC}
+     *                     <li>{@link PlutoconUuid#MINOR_CHARACTERISTIC}
+     *                     <li>{@link PlutoconUuid#TX_LEVEL_CHARACTERISTIC}
+     *                     <li>{@link PlutoconUuid#ADV_INTERVAL_CHARACTERISTIC}
+     *                     </ul>
+     * @return {@link PlutoconEditor}
+     */
+    public PlutoconEditor setPacketFormat(@NotNull PlutoconConnection.PacketFormat packetFormat) {
+        BluetoothGattCharacteristic characteristic = this.getCharacteristics(PlutoconUuid.PACKET_FORMAT_CHARACTERISTIC);
+        if (characteristic != null && this.characteristicValidate(characteristic)) {
+            if (packetFormat == PlutoconConnection.PacketFormat.KongTech) {
+                characteristic.setValue(new byte[]{0x00, 0x59});
+            } else if (packetFormat == PlutoconConnection.PacketFormat.iBeacon) {
+                characteristic.setValue(new byte[]{0x00, 0x4C});
+            }
+            this.addCharacteristic(characteristic);
+        } else {
+            throw new InvalidParameterException("PacketFormat can't change this version");
         }
         return this;
     }

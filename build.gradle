@@ -5,7 +5,7 @@ publish {
     userOrg = 'kongtech'
     groupId = 'com.kongtech.plutocon.sdk'
     artifactId = 'plutocon_sdk'
-    publishVersion = '1.5.2'
+    publishVersion = '1.5.3'
     desc = 'Plutocon SDK'
     website = 'https://github.com/plutocon/Plutocon_SDK'
     issueTracker = "${website}/issues"
@@ -37,7 +37,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 28
         versionCode 12
-        versionName "1.5.2"
+        versionName "1.5.3"
     }
     buildTypes {
         release {
@@ -50,4 +50,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }
