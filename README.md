@@ -1,6 +1,11 @@
 # Plutocon SDK
 
 ## Relases
+### - 1.5.3
+  - Add PacketFormat Property(for A1.6.0)
+  - You can choose KongTech Format or iBeacon Format
+  ※ iBeacon format is not detected in iOS Plutocon
+  
 ### - 1.5.2
   - Change minimum adv interval to 20ms(for A1.3.0)
   
@@ -86,6 +91,10 @@ plutoconConnection.connect(new PlutoconConnection.OnConnectionStateChangeCallbac
 });
 
 // Read plutocon property
+plutoconConnection.getMajor();
+plutoconConnection.getMinor();
+plutoconConnection.getPacketFormat();
+
 plutoconConnection.getBatteryVoltage();
 plutoconConnection.getBroadcastingPower();
 plutoconConnection.getAdvertisingInterval();
@@ -111,6 +120,7 @@ editor
 	.setGeofence(latitude, longitude)
 	.setProperty(uuid, value)
 	.setUUID(uuid)
+	.setPacketFormat(packetFormat)
 	.setOnOperationCompleteCallback(new PlutoconOperator.OnOperationCompleteCallback() {
 		@Override
 		public void onOperationComplete(BluetoothGattCharacteristic characteristic, boolean isLast) {
